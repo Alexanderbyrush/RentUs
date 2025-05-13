@@ -16,15 +16,12 @@ return new class extends Migration
              $table->string('type');
             $table->string('applied_filter');
             $table->string('generation_date');
-
             $table->unsignedBigInteger('user_id')->unique();
-            
-            $table->timestamps(); $table->foreign('user_id')
+            $table->foreign('user_id')
             ->references('id')
             ->on('users')
             ->onDelete('cascade')
             ->onUpdate('cascade');
-            $table->timestamps();
             $table->timestamps();
         });
     }

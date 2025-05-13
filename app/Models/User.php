@@ -8,35 +8,31 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
-{ 
+{
 
     public function roles(){
-        return $this->belongsToMany(Rol::class); 
+        return $this->belongsToMany(Rol::class);
     }
-     public function property(){
+     public function properties(){
         return $this->hasMany(Property::class);
     }
-     public function contractLandlord(){
+     public function contracts(){
         return $this->hasMany(Contract::class);
     }
-     public function contractTenant(){
-        return $this->hasMany(Contract::class);
-    }
-     public function rating(){
-        return $this->hasMany(Rating::class);
-    }
-     public function report(){
+
+    public function reports(){
         return $this->hasMany(Report::class);
     }
-     public function maintenance(){
+
+    public function maintenances(){
         return $this->hasMany(Maintenance::class);
     }
-     public function rental_request(){
-        return $this->hasMany(RentalRequest::class);
+
+    public function users(){
+        return $this->belongsToMany(User::class);
     }
-     public function ratingAuthor(){
-        return $this->hasOne(RentalRequest::class);
-    }
+
+
     /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory, Notifiable;
 

@@ -11,24 +11,17 @@ return new class extends Migration
      */
     public function up(): void
     {
-        //
-        Schema::create('user_rol', function (Blueprint $table) {
+        Schema::create('payments', function (Blueprint $table) {
             $table->id();
-
-            $table->unsignedBigInteger('user_id')->unique();
-            $table->unsignedBigInteger('rol_id')->unique();
-
-            $table->foreign('user_id')
+            $table->string('payment_date');
+            $table->string('amount');
+            $table->string('status');
+            $table->string('payment_method');
+            $table->date('receipt_path');
+            $table->unsignedBigInteger('contract_id')->unique();
+            $table->foreign('contract_id')
             ->references('id')
-            ->on('users')
-            ->onDelete('cascade')
-            ->onUpdate('cascade');
-
-
-            
-            $table->foreign('rol_id')
-            ->references('id')
-            ->on('rols')
+            ->on('contracts')
             ->onDelete('cascade')
             ->onUpdate('cascade');
             $table->timestamps();
@@ -40,6 +33,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
+        Schema::dropIfExists('payments');
     }
 };

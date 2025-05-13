@@ -18,23 +18,18 @@ return new class extends Migration
             $table->string('status');
             $table->string('resolution_date');
             $table->string('validated_by_tenant');
-
              $table->unsignedBigInteger('property_id')->unique();
             $table->unsignedBigInteger('user_id')->unique();
-
             $table->foreign('property_id')
             ->references('id')
-            ->on('propertys')
+            ->on('properties')
             ->onDelete('cascade')
             ->onUpdate('cascade');
-            $table->timestamps();
-            $table->timestamps(); $table->foreign('user_id')
+            $table->foreign('user_id')
             ->references('id')
             ->on('users')
             ->onDelete('cascade')
             ->onUpdate('cascade');
-            $table->timestamps();
-            
             $table->timestamps();
         });
     }

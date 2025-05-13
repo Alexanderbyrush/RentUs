@@ -16,30 +16,19 @@ return new class extends Migration
             $table->string('recipient_role');
             $table->string('score');
             $table->string('comment');
-            $table->string('date');      
-
+            $table->string('date');
             $table->unsignedBigInteger('contract_id')->unique();
             $table->unsignedBigInteger('user_id')->unique();
-            $table->unsignedBigInteger('recipient_id')->unique();
-
             $table->foreign('contract_id')
             ->references('id')
             ->on('contracts')
             ->onDelete('cascade')
             ->onUpdate('cascade');
-            $table->timestamps();
-            $table->timestamps(); $table->foreign('user_id')
+            $table->foreign('user_id')
             ->references('id')
             ->on('users')
             ->onDelete('cascade')
             ->onUpdate('cascade');
-            $table->timestamps();
-            $table->timestamps(); $table->foreign('recipient_id')
-            ->references('id')
-            ->on('recipients')
-            ->onDelete('cascade')
-            ->onUpdate('cascade');
-            $table->timestamps();
             $table->timestamps();
         });
     }

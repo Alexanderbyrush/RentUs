@@ -13,6 +13,24 @@ return new class extends Migration
     {
         Schema::create('rental_requests', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('contract_id')->unique();
+            $table->unsignedBigInteger('property_id')->unique();
+            $table->unsignedBigInteger('user_id')->unique();
+            $table->foreign('contract_id')
+            ->references('id')
+            ->on('contracts')
+            ->onDelete('cascade')
+            ->onUpdate('cascade');
+            $table->foreign('property_id')
+                ->references('id')
+                ->on('properties')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
+            $table->foreign('user_id')
+                ->references('id')
+                ->on('users')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
             $table->timestamps();
         });
     }

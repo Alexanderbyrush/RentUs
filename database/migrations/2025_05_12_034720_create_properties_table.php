@@ -24,15 +24,13 @@ return new class extends Migration
             $table->string('num_bathrooms');
             $table->string('included_services');
             $table->string('publication_date');
-
-              $table->unsignedBigInteger('user_id')->unique();
-            
-            $table->timestamps(); $table->foreign('user_id')
+            $table->string('http://:');
+            $table->unsignedBigInteger('user_id')->unique();
+            $table->foreign('user_id')
             ->references('id')
             ->on('users')
             ->onDelete('cascade')
             ->onUpdate('cascade');
-            $table->timestamps();
             $table->timestamps();
         });
     }

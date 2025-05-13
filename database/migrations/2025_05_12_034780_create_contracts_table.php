@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('contracts', function (Blueprint $table) {
             $table->id();
-               $table->string('start_date');
+            $table->string('start_date');
             $table->string('end_date');
             $table->string('status');
             $table->string('document_path');
@@ -21,30 +21,19 @@ return new class extends Migration
             $table->string('support_validation_date');
             $table->string('accepted_by_tenant');
             $table->string('tenant_acceptance_date');
-
             $table->unsignedBigInteger('property_id')->unique();
             $table->unsignedBigInteger('user_id')->unique();
-            $table->unsignedBigInteger('user_id')->unique();
-
             $table->foreign('property_id')
             ->references('id')
-            ->on('propertys')
+            ->on('properties')
             ->onDelete('cascade')
             ->onUpdate('cascade');
-            $table->timestamps();
-            $table->timestamps(); $table->foreign('user_id')
+            $table->foreign('user_id')
             ->references('id')
             ->on('users')
             ->onDelete('cascade')
             ->onUpdate('cascade');
             $table->timestamps();
-             $table->timestamps(); $table->foreign('user_id')
-            ->references('id')
-            ->on('users')
-            ->onDelete('cascade')
-            ->onUpdate('cascade');
-            $table->timestamps();
-           
         });
     }
 
